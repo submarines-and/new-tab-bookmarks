@@ -1,0 +1,116 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "globals": {
+        "chrome": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "arrow-parens": "off",
+        "brace-style": [
+            "warn",
+            "stroustrup",
+            {
+                "allowSingleLine": true
+            }
+        ],
+        "class-methods-use-this": "off",
+        "function-paren-newline": [
+            "warn",
+            "consistent"
+        ],
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/no-unresolved": "off",
+        "import/prefer-default-export": "off",
+        "lines-between-class-members": [
+            "error",
+            "always",
+            {
+                "exceptAfterSingleLine": true
+            }
+        ],
+        "linebreak-style": "off",
+        "max-classes-per-file": "off",
+        "max-len": "off",
+        "no-await-in-loop": "off",
+        "no-bitwise": "off",
+        "no-case-declarations": "off",
+        "no-confusing-arrow": "warn",
+        "no-continue": "off",
+        "no-mixed-operators": "off",
+        "no-nested-ternary": "off",
+        "no-return-assign": "off",
+        "no-unused-vars": "off",
+        "no-useless-escape": "off",
+        "no-param-reassign": "off",
+        "no-plusplus": "off",
+        "no-shadow": "off",
+        "no-useless-constructor": "off",
+        "no-empty-function": [
+            "warn",
+            {
+                "allow": [
+                    "arrowFunctions",
+                    "functions",
+                    "methods",
+                    "constructors"
+                ]
+            }
+        ],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 1,
+                "maxBOF": 1,
+                "maxEOF": 1
+            }
+        ],
+        "no-promise-executor-return": "off",
+        "no-unsafe-optional-chaining": "off",
+        "no-unused-expressions": "off",
+        "object-curly-newline": [
+            "error",
+            {
+                "multiline": true
+            }
+        ],
+        "padded-blocks": [
+            "error",
+            {
+                "classes": "always"
+            }
+        ],
+        "prefer-const": "warn",
+        "security/detect-object-injection": "off",
+        "quotes": [
+            "warn",
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "@typescript-eslint/explicit-member-accessibility": [
+            "warn",
+            {
+                "accessibility": "explicit",
+                "overrides": {
+                    "constructors": "no-public"
+                }
+            }
+        ],
+        "@typescript-eslint/no-explicit-any": "off"
+    }
+}
