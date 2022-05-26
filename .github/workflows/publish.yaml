@@ -1,0 +1,33 @@
+name: Publish to Chrome store
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    name: Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Build
+        run: yarn build
+
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r dist.zip dist
+
+      - name: Upload & release
+        uses: mnao305/chrome-extension-upload@2.2.0
+        with:
+          file-path: dist/*.zip
+          extension-id: xxxxx
+          client-id: ${{ secrets.CLIENT_ID }}
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
