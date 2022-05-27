@@ -2,8 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+/** Simplify type name */
 type Bookmark = chrome.bookmarks.BookmarkTreeNode;
 
+/** State for bookmark component. Will start as null. */
 interface State {
   bookmarks: Bookmark[]
   selectedFolder: Bookmark;
@@ -11,9 +13,11 @@ interface State {
 
 class Bookmarks extends React.Component<any, State> {
 
-  /** Load bookmarks */
+  /** Load bookmarks on init. */
   public async componentDidMount() {
     const bookmarks: Bookmark[] = await new Promise((resolve) => chrome.bookmarks.getTree(resolve));
+
+    // This assumes the "Bookmarks bar" entry is placed first. "Other bookmarks" is not used.
     this.setState({ bookmarks: bookmarks[0]?.children[0]?.children });
   }
 
@@ -55,14 +59,17 @@ class Bookmarks extends React.Component<any, State> {
 
   /**
    * Choose which folder to view.
-   * @param event
+   * @param event used to stop event bubbling
    * @param bookmark technically a folder
    */
   private openFolder(event: React.MouseEvent, bookmark: Bookmark): void {
+
+    // if the bookmark has an url, it is not a folder and normal click events should be applied
     if (bookmark.url) {
       return;
     }
 
+    // prevent click bubbling
     event.preventDefault();
     this.setState({ selectedFolder: bookmark });
   }
