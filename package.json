@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon",
-    "build": "esbuild src/main.tsx --bundle --minify --outfile=dist/main.js"
+    "build": "esbuild src/main.tsx --bundle --minify --outfile=dist/main.js && cp icons/* manifest.json src/index.html dist"
   },
   "devDependencies": {
     "@types/chrome": "0.0.188",
