@@ -15,7 +15,7 @@ class Bookmarks extends React.Component<any, State> {
 
   /** Load bookmarks on init. */
   public async componentDidMount() {
-    const bookmarks: Bookmark[] = await new Promise((resolve) => chrome.bookmarks.getTree(resolve));
+    const bookmarks: Bookmark[] = await new Promise(resolve => chrome.bookmarks.getTree(resolve));
 
     // This assumes the "Bookmarks bar" entry is placed first. "Other bookmarks" is not used.
     this.setState({ bookmarks: bookmarks[0]?.children[0]?.children });
@@ -23,7 +23,7 @@ class Bookmarks extends React.Component<any, State> {
 
   public render() {
     return (
-      <div className="h-100" style={{ backgroundColor: '#F0F0F0' }}>
+      <div className="h-100">
         <div className='d-flex align-items-center h-75 container'>
           {this.state?.bookmarks && <div>
 
