@@ -6,5 +6,5 @@
         "src"
     ],
     "exec": "yarn build",
-    "ext": "tsx"
+    "ext": "*"
 }
