@@ -71,6 +71,7 @@ class Bookmarks extends React.Component<any, State> {
 
     // prevent click bubbling
     event.preventDefault();
+
     this.setState({ selectedFolder: bookmark });
   }
 
