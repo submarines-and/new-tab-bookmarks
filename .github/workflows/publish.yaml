@@ -1,4 +1,4 @@
-name: Publish to Chrome store
+name: Publish
 
 on:
   push:
