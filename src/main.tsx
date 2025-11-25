@@ -26,6 +26,15 @@ class Bookmarks extends React.Component<any, State> {
       bookmarks: bookmarks[0]?.children[0]?.children,
       bookmarksAsFlatList: this.flattenBookmarksRecursive([], bookmarks),
     });
+
+    // navigate on hash change
+    window.onhashchange = (event: { newURL: string, oldURL: string }) => {
+      const id = window.location.hash?.replace('#', '');
+
+      // set or clear
+      const bookmark = this.state.bookmarks.find(b => b.id === id);
+      this.setState({ selectedFolder: bookmark });
+    };
   }
 
   private flattenBookmarksRecursive(all: Bookmark[], current: Bookmark[]): Bookmark[] {
@@ -45,7 +54,7 @@ class Bookmarks extends React.Component<any, State> {
 
           {this.state?.bookmarks && <div>
 
-            <div className='d-flex align-items-center mb-3' onClick={() => this.setState({ selectedFolder: null })}>
+            <div className='d-flex align-items-center mb-3' onClick={event => this.openFolder(event, null)}>
               <h3 className='mb-0'>{this.state?.selectedFolder?.title || 'Bookmarks'}</h3>
               {this.state?.selectedFolder && <button type='button' className='btn btn-dark ml-2'>Back</button>}
             </div>
@@ -75,7 +84,7 @@ class Bookmarks extends React.Component<any, State> {
               {(this.state?.selectedFolder?.children || this.state.bookmarks)?.map(bookmark => (
                 <a role="button" href={bookmark.url} className='text-decoration-none mr-3 mb-4' >
 
-                  <div className='d-flex align-items-center border rounded mb-2' style={{ height: 100, width: 100 }} onClick={(event) => this.openFolder(event, bookmark)}>
+                  <div className='d-flex align-items-center border rounded mb-2' style={{ height: 100, width: 100 }} onClick={event => this.openFolder(event, bookmark)}>
                     {bookmark.url && <img className='mx-auto' height='24' width='24' src={`http://www.google.com/s2/favicons?domain=${bookmark.url}`} />}
                     {!bookmark.url && <div className='d-flex flex-wrap p-1'>
                       {bookmark.children.map(b => <img className='mr-1 mb-1' height='16' width='16' src={`http://www.google.com/s2/favicons?domain=${b.url}`} />)}
@@ -101,14 +110,15 @@ class Bookmarks extends React.Component<any, State> {
   private openFolder(event: React.MouseEvent, bookmark: Bookmark): void {
 
     // if the bookmark has an url, it is not a folder and normal click events should be applied
-    if (bookmark.url) {
+    if (bookmark?.url) {
       return;
     }
 
     // prevent click bubbling
-    event.preventDefault();
+    event?.preventDefault();
 
-    this.setState({ selectedFolder: bookmark });
+    // update window state - this will in turn trigger navigation
+    window.location.hash = bookmark?.id || '';
   }
 
 }
