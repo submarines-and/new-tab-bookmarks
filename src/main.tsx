@@ -28,13 +28,18 @@ class Bookmarks extends React.Component<any, State> {
     });
 
     // navigate on hash change
-    window.onhashchange = () => {
-      const id = window.location.hash?.replace('#', '');
+    window.onhashchange = () => this.navigate();
 
-      // set or clear
-      const bookmark = this.state.bookmarks.find(b => b.id === id);
-      this.setState({ selectedFolder: bookmark });
-    };
+    // run initial navigation
+    this.navigate();
+  }
+
+  private navigate(): void {
+    const id = window.location.hash?.replace('#', '');
+
+    // set or clear
+    const bookmark = this.state.bookmarksAsFlatList.find(b => b.id === id);
+    this.setState({ selectedFolder: bookmark });
   }
 
   private flattenBookmarksRecursive(all: Bookmark[], current: Bookmark[]): Bookmark[] {
