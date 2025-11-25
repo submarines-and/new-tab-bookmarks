@@ -9,6 +9,10 @@
         color: #f5f5f5 !important;
     }
 
+    .text-accent {
+        color: rgb(255, 219, 0) !important;
+    }
+
     input {
         color: #f5f5f5;
     }
@@ -21,4 +25,8 @@
 input {
     outline: 0 !important;
     background: none;
+}
+
+.text-accent {
+    color: rgb(10, 138, 0);
 }

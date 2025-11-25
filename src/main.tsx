@@ -69,10 +69,10 @@ class Bookmarks extends React.Component<any, State> {
             </div>}
 
             {this.state.searchQuery && <div className="mb-3">
-              {this.state.bookmarksAsFlatList.filter(b => b.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())).map(b => (
-                <a className="search-result d-flex mb-1 text-decoration-none" href={b.url}>
-                  <img className="mr-1" height='20' width='20' src={`http://www.google.com/s2/favicons?domain=${b.url}`} />
-                  <div className="text-body">{b.title}</div>
+              {this.state.bookmarksAsFlatList.filter(b => b.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())).map((b, index) => (
+                <a className="search-result d-flex align-items-center text-decoration-none mb-1" href={b.url}>
+                  <img className="mr-2" height='20' width='20' src={`http://www.google.com/s2/favicons?domain=${b.url}`} />
+                  <div className={index ? 'text-body' : 'text-accent'}>{b.title}</div>
                 </a>
               ))}
             </div>}
