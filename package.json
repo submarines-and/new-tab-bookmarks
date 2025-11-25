@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon",
-    "build": "esbuild src/main.tsx --bundle --minify --sourcemap --outfile=dist/main.js"
+    "build": "esbuild src/main.tsx --bundle --minify --outfile=dist/main.js"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.188",

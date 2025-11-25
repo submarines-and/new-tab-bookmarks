@@ -23,7 +23,7 @@ class Bookmarks extends React.Component<any, State> {
         <div className='d-flex align-items-center h-75 container'>
           {this.state?.bookmarks && <div>
 
-            <div className='d-flex align-items-center mb-3' onClick={(event) => this.openFolder(event)}>
+            <div className='d-flex align-items-center mb-3' onClick={() => this.setState({ selectedFolder: null })}>
               <h3 className='mb-0'>{this.state?.selectedFolder?.title || 'Favorites'}</h3>
               {this.state?.selectedFolder && <button type='button' className='btn btn-dark ml-2'>Back</button>}
             </div>
@@ -54,17 +54,15 @@ class Bookmarks extends React.Component<any, State> {
   /**
    * Choose which folder to view.
    * @param event
-   * @param bookmark send empty to reset
+   * @param bookmark technically a folder
    */
-  private openFolder(event: React.MouseEvent, bookmark?: Bookmark): void {
-    event.preventDefault();
-
-    if (!bookmark) {
-      this.setState({ selectedFolder: null });
+  private openFolder(event: React.MouseEvent, bookmark: Bookmark): void {
+    if (bookmark.url) {
       return;
     }
 
-    this.setState({ selectedFolder: bookmark.url ? null : bookmark });
+    event.preventDefault();
+    this.setState({ selectedFolder: bookmark });
   }
 
 }
