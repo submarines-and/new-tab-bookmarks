@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './main.css';
 
 /** Simplify type name */
 type Bookmark = chrome.bookmarks.BookmarkTreeNode;
