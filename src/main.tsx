@@ -10,6 +10,9 @@ type Bookmark = chrome.bookmarks.BookmarkTreeNode;
 interface State {
   bookmarks: Bookmark[]
   selectedFolder: Bookmark;
+
+  bookmarksAsFlatList: Bookmark[]
+  searchQuery: string;
 }
 
 class Bookmarks extends React.Component<any, State> {
@@ -19,19 +22,51 @@ class Bookmarks extends React.Component<any, State> {
     const bookmarks: Bookmark[] = await new Promise(resolve => chrome.bookmarks.getTree(resolve));
 
     // This assumes the "Bookmarks bar" entry is placed first. "Other bookmarks" is not used.
-    this.setState({ bookmarks: bookmarks[0]?.children[0]?.children });
+    this.setState({
+      bookmarks: bookmarks[0]?.children[0]?.children,
+      bookmarksAsFlatList: this.flattenBookmarksRecursive([], bookmarks),
+    });
+  }
+
+  private flattenBookmarksRecursive(all: Bookmark[], current: Bookmark[]): Bookmark[] {
+    current.forEach(b => {
+      all.push(b);
+
+      b.children?.length && this.flattenBookmarksRecursive(all, b.children);
+    });
+
+    return all;
   }
 
   public render() {
     return (
       <div className="h-100">
         <div className='d-flex align-items-center h-75 container'>
+
           {this.state?.bookmarks && <div>
 
             <div className='d-flex align-items-center mb-3' onClick={() => this.setState({ selectedFolder: null })}>
               <h3 className='mb-0'>{this.state?.selectedFolder?.title || 'Bookmarks'}</h3>
               {this.state?.selectedFolder && <button type='button' className='btn btn-dark ml-2'>Back</button>}
             </div>
+
+            {this.state.bookmarksAsFlatList?.length > 0 && <div className="mb-3 border p-2">
+              <input type="text"
+                className="w-100 border-0"
+                placeholder="Search"
+                value={this.state.searchQuery}
+                onChange={event => this.setState({ searchQuery: event.target.value })}
+                onKeyDown={event => event.key === 'Enter' && window.location.assign((document.querySelector('.search-result') as HTMLAnchorElement).href)} />
+            </div>}
+
+            {this.state.searchQuery && <div className="mb-3">
+              {this.state.bookmarksAsFlatList.filter(b => b.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())).map(b => (
+                <a className="search-result d-flex mb-1 text-decoration-none" href={b.url}>
+                  <img className="mr-1" height='20' width='20' src={`http://www.google.com/s2/favicons?domain=${b.url}`} />
+                  <div className="text-body">{b.title}</div>
+                </a>
+              ))}
+            </div>}
 
             <div className='row m-0 flex-wrap'>
 
