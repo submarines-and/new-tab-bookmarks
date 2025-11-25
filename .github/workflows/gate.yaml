@@ -6,9 +6,6 @@ on:
 
 jobs:
   build:
-    name: Approve
     runs-on: ubuntu-latest
-
     steps:
-      - name: Approve
-        run: echo
+      - run: yarn build
