@@ -24,11 +24,13 @@ class Bookmarks extends React.Component<any, State> {
           {this.state?.bookmarks && <div>
 
             <div className='d-flex align-items-center mb-3' onClick={() => this.setState({ selectedFolder: null })}>
-              <h3 className='mb-0'>{this.state?.selectedFolder?.title || 'Favorites'}</h3>
+              <h3 className='mb-0'>{this.state?.selectedFolder?.title || 'Bookmarks'}</h3>
               {this.state?.selectedFolder && <button type='button' className='btn btn-dark ml-2'>Back</button>}
             </div>
 
             <div className='row m-0 flex-wrap'>
+
+              {!this.state.bookmarks.length && <div className='text-muted'>You have no bookmarks</div>}
 
               {(this.state?.selectedFolder?.children || this.state.bookmarks)?.map(bookmark => (
                 <a role="button" href={bookmark.url} className='text-decoration-none mr-3 mb-4' >
