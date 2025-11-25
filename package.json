@@ -1,7 +1,7 @@
 {
-  "name": "chrome-tab",
+  "name": "new-tab-bookmarks",
   "version": "0.0.0",
-  "repository": "https://github.com/submarines-and/chrome-tab",
+  "repository": "https://github.com/submarines-and/new-tab-bookmarks",
   "author": "submarines",
   "license": "MIT",
   "private": true,

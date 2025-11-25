@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Chrome Tab",
+    "name": "New Tab Bookmarks",
     "version": "0.1",
-    "description": "Chrome extension that replicates various Safari behaviours.",
+    "description": "Chrome extensions that shows your bookmarks on the new tab page.",
     "author": "submarines",
     "chrome_url_overrides": {
         "newtab": "index.html"
