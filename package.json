@@ -10,7 +10,7 @@
     "build": "esbuild src/main.tsx --bundle --minify --outfile=dist/main.js && cp icons/* manifest.json src/index.html dist"
   },
   "devDependencies": {
-    "@types/chrome": "0.0.188",
+    "@types/chrome": "0.0.190",
     "@types/react": "18.0.12",
     "@types/react-dom": "18.0.5",
     "@typescript-eslint/eslint-plugin": "5.27.1",
