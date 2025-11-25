@@ -8,10 +8,10 @@ type Bookmark = chrome.bookmarks.BookmarkTreeNode;
 
 /** State for bookmark component. Will start as null. */
 interface State {
-  bookmarks: Bookmark[]
+  bookmarks: Bookmark[];
   selectedFolder: Bookmark;
 
-  bookmarksAsFlatList: Bookmark[]
+  bookmarksAsFlatList: Bookmark[];
   searchQuery: string;
 }
 
@@ -28,7 +28,7 @@ class Bookmarks extends React.Component<any, State> {
     });
 
     // navigate on hash change
-    window.onhashchange = (event: { newURL: string, oldURL: string }) => {
+    window.onhashchange = () => {
       const id = window.location.hash?.replace('#', '');
 
       // set or clear
@@ -84,7 +84,10 @@ class Bookmarks extends React.Component<any, State> {
               {(this.state?.selectedFolder?.children || this.state.bookmarks)?.map(bookmark => (
                 <a role="button" href={bookmark.url} className='text-decoration-none mr-3 mb-4' >
 
-                  <div className='d-flex align-items-center border rounded mb-2' style={{ height: 100, width: 100 }} onClick={event => this.openFolder(event, bookmark)}>
+                  <div className='d-flex align-items-center border rounded mb-2' style={{
+                    height: 100,
+                    width: 100,
+                  }} onClick={event => this.openFolder(event, bookmark)}>
                     {bookmark.url && <img className='mx-auto' height='24' width='24' src={`http://www.google.com/s2/favicons?domain=${bookmark.url}`} />}
                     {!bookmark.url && <div className='d-flex flex-wrap p-1'>
                       {bookmark.children.map(b => <img className='mr-1 mb-1' height='16' width='16' src={`http://www.google.com/s2/favicons?domain=${b.url}`} />)}
