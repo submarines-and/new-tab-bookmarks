@@ -15,17 +15,18 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: "16"
+          cache: "yarn"
 
-      - name: Build
-        run: yarn build
+      - run: yarn --frozen-lockfile
+
+      - run: yarn build
 
       - uses: montudor/action-zip@v1
         with:
           args: zip -qq -r dist.zip dist
 
-      - name: Upload & release
-        uses: mnao305/chrome-extension-upload@2.2.0
+      - uses: mnao305/chrome-extension-upload@2.2.0
         with:
           file-path: dist/*.zip
           extension-id: xxxxx
