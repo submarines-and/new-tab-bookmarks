@@ -1,0 +1,14 @@
+name: Gate
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: Approve
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Approve
+        run: echo
