@@ -1,14 +1,19 @@
 {
     "manifest_version": 3,
-    "name": "New Tab Bookmarks",
-    "version": "0.1",
-    "description": "Chrome extensions that shows your bookmarks on the new tab page.",
+    "name": "Chrome Enhancements",
+    "version": "0.2",
+    "description": "Various changes to chrome.",
     "author": "submarines",
+    "background": {
+        "service_worker": "background.js"
+    },
     "chrome_url_overrides": {
         "newtab": "index.html"
     },
     "permissions": [
-        "bookmarks"
+        "bookmarks",
+        "tabGroups",
+        "storage"
     ],
     "icons": {
         "16": "16.png",

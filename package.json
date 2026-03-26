@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint ./src/**/*.tsx --max-warnings 0",
     "start": "yarn build  --watch",
-    "build": "cp icons/* manifest.json src/index.html dist && esbuild src/main.tsx --bundle --minify --outfile=dist/main.js"
+    "build": "cp icons/* manifest.json src/index.html dist && esbuild src/main.tsx --bundle --minify --outfile=dist/main.js && esbuild src/background.ts --bundle --minify --outfile=dist/background.js"
   },
   "devDependencies": {
     "@types/chrome": "0.0.233",

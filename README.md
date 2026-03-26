@@ -1,5 +1,7 @@
 # New Tab Bookmarks
-Chrome extensions that shows your bookmarks on the new tab page. That is all it does.
+Various enhancements to chrome.
+- Shows your bookmarks on the new tab page
+- Auto collapse pinned tab groups when focus is lost.
 
 
 ## Installation from source
@@ -8,6 +10,7 @@ Chrome extensions that shows your bookmarks on the new tab page. That is all it 
 * Enable `developer mode` in top right corner.
 * Click `Load unpacked`, select the `dist` folder that was created by the build step.
 * Open a new tab and click `keep` on the dialog that appears.
+
 
 
 ![Start page](./assets/1.png)
